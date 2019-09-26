@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue COmponent Communication Quiz</title>
+  </head>
+  <body>
+    <div id="app">
+      <child-component v-bind:propsdata="message"></child-component>
+      <sibling-component v-bind:miapropsdata="anotherMessage"></sibling-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+      Vue.component('sibling-component',{
+        template: '<p>{{ miapropsdata }}</p>',
+        props:['miapropsdata']
+      });
+
+      Vue.component('child-component',{
+        props: ['propsdata'],
+        template: '<p>{{ propsdata }}</p>'
+      });
+
+      var app = new Vue({
+        el:'#app',
+        data: {
+          message: 'Hello Vue! passed from Parent Component',
+          anotherMessage: 'Mia Vue component!'
+        }
+      });
+    </script>
+  </body>
+</html>
